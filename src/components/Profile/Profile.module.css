@@ -1,16 +1,8 @@
 .content {
-    grid-area: c;
-    background-color: rgb(231, 210, 210);
-  }
-
-.posts {
-
+  grid-area: c;
+  background-color: rgb(231, 210, 210);
 }
 
 img {
   width: 100%;
-}
-
-.item {
-    color: green;
 }
