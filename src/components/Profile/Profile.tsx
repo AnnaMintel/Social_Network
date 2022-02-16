@@ -1,9 +1,9 @@
 import React from "react";
-import "../App.css";
+import s from "./Profile.module.css";
 
 export const Profile = () => {
     return(
- <div className="content">
+ <div className={s.content}>
         <img
           src="https://media-exp1.licdn.com/dms/image/C4D1BAQGDmALg_8s-Yg/company-background_10000/0/1519799119530?e=2159024400&v=beta&t=4WV9YKR9L3PAEnppWmPPMk5xVnETtWvhZN8NexEzPwM"
           alt=""
@@ -16,13 +16,12 @@ export const Profile = () => {
         </div>
         <div>ava + discription</div>
         <div>
-          {" "}
-          my POsts
+          My POsts
           <div>new posts</div>
         </div>
-        <div>
-          <div>post1</div>
-          <div>post2</div>
+        <div className={s.posts}>
+          <div className={s.item}>post1</div>
+          <div className={s.item}>post2</div>
         </div>
       </div>
     

@@ -1,0 +1,13 @@
+.nav {
+    grid-area: n;
+    background-color: rgb(158, 33, 33);
+    opacity: 60%;
+  }
+
+.item {
+    color: white;
+}
+
+.gold {
+  color: gold;
+}
