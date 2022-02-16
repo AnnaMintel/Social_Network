@@ -13,11 +13,9 @@ export const MyPosts = () => {
       </div>
 
       <div className={s.posts}>
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        <Post name="Masha P" message="HI, how are you BRO?" />
+        <Post name="Hanna " message="The weather was really bad"  />
+        <Post name="Vlad E" message="I can't find my glasses"  />
       </div>
     </div>
   );
