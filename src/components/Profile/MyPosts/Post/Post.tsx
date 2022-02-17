@@ -1,17 +1,22 @@
 import React from "react";
 import s from "./Post.module.css";
 
-export const Post = (props:any) => {
+type PostType = {
+  name: string;
+  message: string;
+  likeCounter: string;
+}
 
+export const Post = (props:PostType) => {
   return (
     <div className={s.item}>
       <img
         src="https://www.meme-arsenal.com/memes/134f55e2d4a0717c1f76193879fbccc1.jpg"
         alt=""
       />
-     {props.name}, {props.message}
-      <div>
-        <span>like</span>
+     {props.name}: "{props.message}"
+      <div> 
+        <span>{props.likeCounter}  likes </span>
       </div>
     </div>
   );

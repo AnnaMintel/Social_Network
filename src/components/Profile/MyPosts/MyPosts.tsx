@@ -13,9 +13,9 @@ export const MyPosts = () => {
       </div>
 
       <div className={s.posts}>
-        <Post name="Masha P" message="HI, how are you BRO?" />
-        <Post name="Hanna " message="The weather was really bad"  />
-        <Post name="Vlad E" message="I can't find my glasses"  />
+        <Post name="Masha P" message="HI, how are you BRO?" likeCounter="20"/>
+        <Post name="Hanna " message="The weather was really bad"  likeCounter="30"/>
+        <Post name="Vlad E" message="I can't find my glasses" likeCounter="50" />
       </div>
     </div>
   );
