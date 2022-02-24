@@ -6,7 +6,7 @@ export const MyPosts = () => {
   return (
     <div>
       <div>
-        My POsts
+  return (
         <div>new posts</div>
         <textarea></textarea>
         <button>Add post</button>
