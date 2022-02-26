@@ -10,7 +10,7 @@ export const Navbar = () => {
       </div>
 
       <div className={s.item}>
-        <a href="/messages">Messages</a>
+        <a href="/dialogs">Messages</a>
       </div>
 
       <div className={s.item}>
