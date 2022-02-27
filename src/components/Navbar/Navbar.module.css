@@ -4,10 +4,11 @@
     opacity: 60%;
   }
 
-.item {
+.item a {
     color: white;
+    text-decoration: none;
 }
 
-.gold {
+.item a.active{
   color: gold;
 }
