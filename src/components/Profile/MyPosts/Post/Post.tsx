@@ -2,9 +2,9 @@ import React from "react";
 import s from "./Post.module.css";
 
 type PostType = {
-  name: string;
+  name?: string;
   message: string;
-  likeCounter: string;
+  likeCounter: number;
 }
 
 export const Post = (props:PostType) => {
