@@ -5,10 +5,15 @@ import { Post } from "./Post/Post";
 export const MyPosts = () => {
 
   let postsData = [
-    {message: 'HI, how are you BRO?', likeCounter: 20}, 
-    {message: 'The weather was really bad', likeCounter: 30},
-    {message: 'I can\'t find my glasses', likeCounter: 54}
-]
+    { id: 1, message: 'HI, how are you BRO?', likeCounter: 20 },
+    { id: 2, message: 'The weather was really bad', likeCounter: 30 },
+    { id: 3, message: 'I can\'t find my glasses', likeCounter: 54 },
+    { id: 2, message: 'The weather was really bad', likeCounter: 30 },
+    { id: 3, message: 'I can\'t find my glasses', likeCounter: 54 }
+  ]
+  
+    let postsElements = postsData
+      .map(p => <Post message={p.message} likeCounter={p.likeCounter} />)
 
   return (
     <div className={s.postsBlock}>
@@ -17,18 +22,13 @@ export const MyPosts = () => {
         <div>
           <textarea></textarea>
         </div>
-
         <div>
           <button>Add post</button>
         </div>
       </div>
 
       <div className={s.posts}>
-        <Post message={postsData[0].message} likeCounter={postsData[0].likeCounter} />
-        <Post message={postsData[1].message} likeCounter={postsData[1].likeCounter} />
-        <Post message={postsData[2].message} likeCounter={postsData[2].likeCounter} />
-        
-        
+        { postsElements }
       </div>
     </div>
   );
