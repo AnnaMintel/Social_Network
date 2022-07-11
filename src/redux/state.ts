@@ -5,7 +5,7 @@ let state = {
             { id: 1, message: 'Hi, how are you?', likeCount: 12 },
             { id: 2, message: 'I disagree', likeCount: 12 },
             { id: 3, message: 'Its impossible', likeCount: 12 },
-            { id: 4, message: 'Whats going on?', likeCount: 12 }
+            { id: 4, message: 'Whats going on?', likeCount: 12 } 
         ]
     },
     

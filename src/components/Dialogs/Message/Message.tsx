@@ -6,7 +6,7 @@ type MessageType = {
     id: number
 }
 
-export const Message = (props: MessageType) => {
+export const Message = (props: MessageType) => { 
     return (
         <div className={s.dialog}>{props.message}</div>
     )
