@@ -4,21 +4,22 @@ import { Post } from "./Post/Post";
 
 export const MyPosts = (props: any) => {
 
-  let postsElements = props.posts.map((p: any) => <Post message={p.message} likeCounter={p.likeCounter} />)
+  let postsElements = props.posts.map((p: any) =>
+    <Post message={p.message} likeCounter={p.likeCounter} />)
 
   let newPostElement = React.createRef();
 
   let addPost = () => {
-    //@ts-ignore
+    //@ts-ignore 
     let text = newPostElement.current.value;
-    alert(text)
+    props.addPost(text);
   };
 
   return (
     <div className={s.postsBlock}>
       <h3>My posts</h3>
       <div>
-        <div> 
+        <div>
           {/* @ts-ignore */}
           <textarea ref={newPostElement}></textarea>
         </div>

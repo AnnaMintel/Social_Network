@@ -8,9 +8,8 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { News } from "./components/News/News";
 import { Profile } from "./components/Profile/Profile";
 import { Settings } from "./components/Settings/Settings";
-
 const App = (props: any) => {
-  return (
+  return ( 
     <BrowserRouter>
 
       <div className="app-wrapper">
@@ -19,7 +18,7 @@ const App = (props: any) => {
         <div className='app-wrapper-content'>
           <Routes>
             <Route path="/profile"
-              element={<Profile state={props.state.profilePage} />} />
+              element={<Profile state={props.state.profilePage} addPost={props.addPost} />} />
             <Route path="/dialogs"
               element={<Dialogs state={props.state.dialogsPage} />} />
             <Route path="/news" element={<News />} />

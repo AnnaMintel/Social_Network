@@ -5,7 +5,7 @@ let state = {
             { id: 1, message: 'Hi, how are you?', likeCount: 12 },
             { id: 2, message: 'I disagree', likeCount: 12 },
             { id: 3, message: 'Its impossible', likeCount: 12 },
-            { id: 4, message: 'Whats going on?', likeCount: 12 } 
+            { id: 4, message: 'Whats going on?', likeCount: 12 }  
         ]
     },
     
@@ -28,6 +28,16 @@ let state = {
         ]
     }
 
+}
+
+export const addPost = (postMessage: any) => {
+    let newPost = {
+        id: 5, 
+        message: postMessage,
+        likeCount: 0
+    };
+
+    state.profilePage.posts.push(newPost);
 }
 
 export default state;
