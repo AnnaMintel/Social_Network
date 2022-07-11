@@ -13,6 +13,8 @@ export const MyPosts = (props: any) => {
     //@ts-ignore 
     let text = newPostElement.current.value;
     props.addPost(text);
+    //@ts-ignore 
+    newPostElement.current.value = ''; 
   };
 
   return (
