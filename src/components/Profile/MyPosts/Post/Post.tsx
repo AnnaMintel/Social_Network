@@ -3,7 +3,7 @@ import s from "./Post.module.css";
 
 type PostType = { 
   name?: string; 
-  message: string;
+  message: string; 
   likeCounter: number; 
 }
 
