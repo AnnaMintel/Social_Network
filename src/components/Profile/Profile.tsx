@@ -5,7 +5,7 @@ import { ProfileInfo } from "./ProfileInfo/ProfileInfo";
 
 export const Profile = (props: any) => {
   return (
-    <div>
+    <div> 
       <ProfileInfo />
       <MyPosts posts={props.profilePage.posts}
         newPostText={props.profilePage.newPostText}
