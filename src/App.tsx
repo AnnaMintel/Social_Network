@@ -8,6 +8,7 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { News } from "./components/News/News";
 import { Profile } from "./components/Profile/Profile";
 import { Settings } from "./components/Settings/Settings";
+
 const App = (props: any) => {
   return (
     <BrowserRouter>
@@ -19,9 +20,8 @@ const App = (props: any) => {
 
             <Route path="/profile"
               element={<Profile profilePage={props.state.profilePage}
-                addPost={props.addPost}
-                updateNewPostText={props.updateNewPostText}
-                 />} />
+                dispatch={props.dispatch}
+              />} />
 
             <Route path="/dialogs"
               element={<Dialogs state={props.state.dialogsPage} />} />

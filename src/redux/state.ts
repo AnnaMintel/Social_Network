@@ -5,11 +5,11 @@ let store = {
                 { id: 1, message: 'Hi, how are you?', likeCount: 12 },
                 { id: 2, message: 'I disagree', likeCount: 12 },
                 { id: 3, message: 'Its impossible', likeCount: 12 },
-                { id: 4, message: 'Whats going on?', likeCount: 12 }  
+                { id: 4, message: 'Whats going on?', likeCount: 12 }
             ],
             newPostText: 'itkamasutra'
         },
-        
+
         dialogsPage: {
             dialogsData: [
                 { id: 1, name: 'Dimych' },
@@ -29,32 +29,37 @@ let store = {
             ]
         }
     },
-    getState() {
-        return this._state;
-    },
     _callSubscriber() {
         console.log("state is changed")
     },
-    addPost (postMessage: any) {
-        let newPost = {
-            id: 5, 
-            message: this._state.profilePage.newPostText,
-            likeCount: 0 
-        };
-    
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = " ";
-        //@ts-ignore
-        this._callSubscriberthis(this._state);
+
+    getState() {
+        return this._state;
     },
-    updateNewPostText(newText: any) {
-        this._state.profilePage.newPostText = newText;
-        // @ts-ignore
-        this._callSubscriber(this._state);
-    },
-    subscribe (observer:any) {
+    subscribe(observer: any) {
         // @ts-ignore
         this._callSubscriber = observer;
+    },
+    
+    dispatch(action: any) {        // {type: 'название действия'}
+       
+        if (action.type === 'addPost') {
+            let newPost = {
+                id: 5,
+                message: this._state.profilePage.newPostText,
+                likeCount: 0
+            };
+
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newPostText = " ";
+            //@ts-ignore
+            this._callSubscriberthis(this._state);
+        }
+        else if (action.type === 'updateNewPostText') {
+            this._state.profilePage.newPostText = action.newText;
+            // @ts-ignore
+            this._callSubscriber(this._state);
+        }
     }
 }
 
