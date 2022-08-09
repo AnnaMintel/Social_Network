@@ -3,7 +3,7 @@ import s from "./../Dialogs.module.css";
 
 type MessageType = {
     message: string
-    id: number
+    id: number 
 }
 
 export const Message = (props: MessageType) => { 
