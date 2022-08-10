@@ -10,6 +10,7 @@ import { Profile } from "./components/Profile/Profile";
 import { Settings } from "./components/Settings/Settings";
 
 const App = (props: any) => {
+console.log(props.state)
   return (
     <BrowserRouter>
       <div className="app-wrapper">
