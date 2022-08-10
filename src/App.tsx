@@ -8,9 +8,14 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { News } from "./components/News/News";
 import { Profile } from "./components/Profile/Profile";
 import { Settings } from "./components/Settings/Settings";
+import { StoreType } from "./redux/state";
+
+type PropsType = {
+  store: StoreType
+}
 
 const App = (props: any) => {
-console.log(props.state)
+  
   return (
     <BrowserRouter>
       <div className="app-wrapper">
@@ -21,7 +26,7 @@ console.log(props.state)
 
             <Route path="/profile"
               element={<Profile profilePage={props.state.profilePage}
-                dispatch={props.dispatch} 
+                dispatch={props.store.dispatch.bind(props.store)} 
               />} />
 
             <Route path="/dialogs"

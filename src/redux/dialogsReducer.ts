@@ -1,9 +1,20 @@
+import { DialogsPageType } from "./state";
 
 export const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 export const SEND_MESSAGE = 'SEND_MESSAGE';
 
+export type SendMessageActionType = {
+    type: 'SEND_MESSAGE'
+}
 
-export const dialogsReducer = (state: any, action: any) => {
+export type UpdateNewMessageBodyActionType = {
+    type: 'UPDATE-NEW-MESSAGE-BODY'
+    body: string
+}
+
+type ActionType = SendMessageActionType | UpdateNewMessageBodyActionType
+
+export const dialogsReducer = (state: DialogsPageType, action: ActionType) => {
 
     switch (action.type) {
 
@@ -24,5 +35,5 @@ export const dialogsReducer = (state: any, action: any) => {
 } 
 
 export const sendMessageActionCreator = () => ({ type: SEND_MESSAGE })
-export const updateNewMessageBodyActionCreator = (body: any) =>
+export const updateNewMessageBodyActionCreator = (body: string) =>
     ({ type: UPDATE_NEW_MESSAGE_BODY, body: body })

@@ -1,9 +1,40 @@
+import { DialogItemType } from '../components/Dialogs/DialogItem/DialogItem';
+import { MessageType } from '../components/Dialogs/Message/Message';
+import { PostType } from '../components/Profile/MyPosts/Post/Post';
 import { dialogsReducer, SEND_MESSAGE, UPDATE_NEW_MESSAGE_BODY } from './dialogsReducer';
 import { ADD_POST, profileReducer, UPDATE_NEW_POST_TEXT } from './profileReducer';
 import { sidebarReducer } from './sidebarReducer';
 
 
-const store = {
+export type StoreType = {
+    _state: RootStateType
+    getState: () => RootStateType
+    dispatch: (action:any) => void
+    subscribe: (callback: ()=> void) => void
+}
+
+export type RootStateType = {
+    profilePage: ProfilePageType
+    dialogsPage: DialogsPageType
+    sidebar: SidebarType 
+}
+
+export type ProfilePageType = {
+    posts: Array<PostType>
+    newPostText: string
+}
+
+export type DialogsPageType = {
+    dialogsData: Array<DialogItemType >
+    messagesData: Array<MessageType>
+    newMessageBody: string
+}
+
+export type SidebarType = {
+
+}
+
+const store: StoreType = {
     _state: {
         profilePage: {
             posts: [
@@ -37,13 +68,11 @@ const store = {
         },
         sidebar: {}
     },
-    cv() {
-        console.log("state is changed")
-    },
 
     getState() {
         return this._state;
     },
+
     subscribe(observer: any) {
         // @ts-ignore
         this._callSubscriber = observer;
