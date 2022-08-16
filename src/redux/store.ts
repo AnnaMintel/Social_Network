@@ -1,40 +1,40 @@
 import { DialogItemType } from '../components/Dialogs/DialogItem/DialogItem';
 import { MessageType } from '../components/Dialogs/Message/Message';
 import { PostType } from '../components/Profile/MyPosts/Post/Post';
-import { dialogsReducer, SEND_MESSAGE, UPDATE_NEW_MESSAGE_BODY } from './dialogsReducer';
-import { ADD_POST, profileReducer, UPDATE_NEW_POST_TEXT } from './profileReducer';
-import { sidebarReducer } from './sidebarReducer';
+import { DialogsPageType, dialogsReducer, SEND_MESSAGE, UPDATE_NEW_MESSAGE_BODY } from './dialogsReducer';
+import { ADD_POST, ProfilePageType, profileReducer, UPDATE_NEW_POST_TEXT } from './profileReducer';
+import { sidebarReducer, SidebarType } from './sidebarReducer';
 
 
-export type StoreType = {
-    _state: RootStateType
-    getState: () => RootStateType
-    dispatch: (action:any) => void
-    subscribe: (callback: ()=> void) => void
-}
+// export type StoreType = {
+//     _state: RootStateType
+//     getState: () => RootStateType
+//     dispatch: (action:any) => void
+//     subscribe: (callback: ()=> void) => void
+// }
 
-export type RootStateType = {
-    profilePage: ProfilePageType
-    dialogsPage: DialogsPageType
-    sidebar: SidebarType 
-}
+// export type RootStateType = {
+//     profilePage: ProfilePageType
+//     dialogsPage: DialogsPageType
+//     sidebar: SidebarType 
+// }
 
-export type ProfilePageType = {
-    posts: Array<PostType>
-    newPostText: string
-}
+// export type ProfilePageType = {
+//     posts: Array<PostType>
+//     newPostText: string
+// }
 
-export type DialogsPageType = {
-    dialogsData: Array<DialogItemType >
-    messagesData: Array<MessageType>
-    newMessageBody: string
-}
+// export type DialogsPageType = {
+//     dialogsData: Array<DialogItemType >
+//     messagesData: Array<MessageType>
+//     newMessageBody: string
+// }
 
-export type SidebarType = {
+// export type SidebarType = {
 
-}
+// }
 
-const store: StoreType = {
+const store: any = {
     _state: {
         profilePage: {
             posts: [
@@ -78,7 +78,7 @@ const store: StoreType = {
         this._callSubscriber = observer;
     },
 
-    dispatch(action: any) {        // {type: 'название действия'}
+    dispatch(action: any) {        // {type: 'название действия'} { type: SEND_MESSAGE }
 
         this._state.profilePage = profileReducer(this._state.profilePage, action);
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
