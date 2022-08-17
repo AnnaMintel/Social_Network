@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-
+ 
 const rerenderEntireTree = (state: RootStateType) => {
   ReactDOM.render(
     <React.StrictMode>
