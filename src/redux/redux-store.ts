@@ -6,7 +6,7 @@ import { combineReducers, createStore, Store } from "redux";
 
 const reducers = combineReducers({
     profilePage: profileReducer,
-    dialogPage: dialogsReducer,
+    dialogsPage: dialogsReducer,
     sidebarPage: sidebarReducer
 });
 

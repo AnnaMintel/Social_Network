@@ -7,23 +7,21 @@ import { Message } from "./Message/Message";
 
 export const Dialogs = (props: any) => {
 
-    let state = props.store.getState().dialogsPage;
-
-    let dialogsElements = state.dialogsData.map((dialog: any) =>
+    let dialogsElements = props.dialogsPage.dialogsData.map((dialog: any) =>
         <DialogItem name={dialog.name} id={dialog.id} />);
 
-    let messagesElements = state.messagesData.map((message: any) =>
+    let messagesElements = props.dialogsPage.messagesData.map((message: any) =>
         <Message message={message.message} id={message.id} />);
 
-    let newMessageBody = state.newMessageBody;
+    let newMessageBody = props.dialogsPage.newMessageBody;
 
     let onSendMessageClick = () => {
-        props.store.dispatch(sendMessageActionCreator());
+        props.sendMessage();
     }
 
     let onSendMessageChange = (event: any) => {
         let body = event.target.value;
-        props.store.dispatch(updateNewMessageBodyActionCreator(body));
+        props.updateNewMessageBody(body);
     }
     
 

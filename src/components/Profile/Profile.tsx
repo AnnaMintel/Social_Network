@@ -8,9 +8,7 @@ export const Profile = (props: any) => {
   return (
     <div> 
       <ProfileInfo />
-      <MyPostsContainer store={props.store} posts={props.profilePage.posts}
-        newPostText={props.profilePage.newPostText}
-        dispatch={props.dispatch} />
+      <MyPostsContainer store={props.store}  />
     </div>
   );
 };
