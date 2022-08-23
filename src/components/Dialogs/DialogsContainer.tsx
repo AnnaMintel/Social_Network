@@ -1,22 +1,27 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { sendMessageActionCreator, updateNewMessageBodyActionCreator } from "../../redux/dialogsReducer";
+import { RootStateType } from "../../redux/store";
 import { Dialogs } from "./Dialogs";
 
 
 export const DialogsContainer = (props: any) => {
 
-    let state = props.store.getState();
+    const dispatch = useDispatch();
+
+    const dialogsPage = useSelector<RootStateType>(state => state.dialogsPage)
 
     let onSendMessageClick = () => {
-        props.store.dispatch(sendMessageActionCreator());
+        dispatch(sendMessageActionCreator());
     }
 
     let onSendMessageChange = (body: any) => {
-        props.store.dispatch(updateNewMessageBodyActionCreator(body));
+        dispatch(updateNewMessageBodyActionCreator(body));
     }
 
     return <Dialogs updateNewMessageBody={onSendMessageChange}
                     sendMessage={onSendMessageClick}
-                    dialogsPage={state.dialogsPage}
+                    dialogsPage={dialogsPage}
     />
 }
