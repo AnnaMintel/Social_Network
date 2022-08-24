@@ -6,7 +6,6 @@ import { dialogsReducer} from './dialogsReducer';
 import { profileReducer} from './profileReducer';
 import { sidebarReducer} from './sidebarReducer';
 
-
 export type StoreType = {
     _state: RootStateType
     getState: () => RootStateType
@@ -90,5 +89,4 @@ const store: any = {
     }
 
 }
-
 export default store;
