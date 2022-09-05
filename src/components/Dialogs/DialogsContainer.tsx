@@ -15,10 +15,10 @@ let mapStateToProps = (state: any) => {
 let mapDispatchToProps = (dispatch:any) => {
     return {
         updateNewMessageBody: () => {
-            store.dispatch(sendMessageActionCreator());
+            dispatch(sendMessageActionCreator());
         },
         sendMessage: (body: any) => {
-            store.dispatch(updateNewMessageBodyActionCreator(body));
+            dispatch(updateNewMessageBodyActionCreator(body));
         }
     }
 }
