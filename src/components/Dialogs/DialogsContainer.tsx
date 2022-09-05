@@ -1,27 +1,26 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { sendMessageActionCreator, updateNewMessageBodyActionCreator } from "../../redux/dialogsReducer";
-import { RootStateType } from "../../redux/store";
+import store, { RootStateType } from "../../redux/store";
 import { Dialogs } from "./Dialogs";
 
-
-export const DialogsContainer = (props: any) => {
-
-    const dispatch = useDispatch();
-
-    const dialogsPage = useSelector<RootStateType>(state => state.dialogsPage)
-
-    let onSendMessageClick = () => {
-        dispatch(sendMessageActionCreator());
+// передача данных в коннект
+let mapStateToProps = (state: any) => {
+    return {
+        dialogsPage: state.dialogsPage
     }
-
-    let onSendMessageChange = (body: any) => {
-        dispatch(updateNewMessageBodyActionCreator(body));
-    }
-
-    return <Dialogs updateNewMessageBody={onSendMessageChange}
-                    sendMessage={onSendMessageClick}
-                    dialogsPage={dialogsPage}
-    />
 }
+
+// передача функций в коннект
+let mapDispatchToProps = (dispatch:any) => {
+    return {
+        updateNewMessageBody: () => {
+            store.dispatch(sendMessageActionCreator());
+        },
+        sendMessage: (body: any) => {
+            store.dispatch(updateNewMessageBodyActionCreator(body));
+        }
+    }
+}
+
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
