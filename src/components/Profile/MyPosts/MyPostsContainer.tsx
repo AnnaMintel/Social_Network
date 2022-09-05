@@ -6,7 +6,7 @@ import { MyPosts } from "./MyPosts";
 
 
 // передача данных в коннект
-let mapStateToProps = (state: any) => {
+let mapStateToProps = (state: RootStateType ) => {
   return {
     posts: state.profilePage.posts,
     newPostText: state.profilePage.newPostText

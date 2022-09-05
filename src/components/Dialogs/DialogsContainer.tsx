@@ -4,8 +4,13 @@ import { sendMessageActionCreator, updateNewMessageBodyActionCreator } from "../
 import store, { RootStateType } from "../../redux/store";
 import { Dialogs } from "./Dialogs";
 
+// type mapStateToPropsType = {
+//     dialogsPage: any
+// }
+
+
 // передача данных в коннект
-let mapStateToProps = (state: any) => {
+let mapStateToProps = (state: RootStateType ) => {
     return {
         dialogsPage: state.dialogsPage
     }
