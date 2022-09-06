@@ -1,3 +1,4 @@
+import { Console } from "console";
 import { PostType } from "../components/Profile/MyPosts/Post/Post";
 
 
@@ -31,6 +32,7 @@ const initialState = {
 }
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionType) => {
+
     switch (action.type) {
         case ADD_POST: {
             let newPost = {
@@ -38,16 +40,19 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
                 message: state.newPostText,
                 likeCount: 0
             };
-            let stateCopy = { ...state };
-            stateCopy.posts = [...state.posts];
+            let stateCopy = { 
+                ...state,
+                newPostText: '',
+                posts: [...state.posts],
+            };
             stateCopy.posts.push(newPost);
-            stateCopy.newPostText = '';
             return stateCopy;
         }
         case UPDATE_NEW_POST_TEXT: {
-            let stateCopy = {...state};
-            stateCopy.newPostText = action.newText;
-            return stateCopy;
+            return {
+                ...state,
+                newPostText: action.newText
+            };
         }
         default:
             return state;

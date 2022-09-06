@@ -1,10 +1,14 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profileReducer";
 import s from "./MyPosts.module.css";
 import { Post } from "./Post/Post";
 
 
 export const MyPosts = (props: any) => {
+
+// const state = useSelector(state => state)
+// console.log(state)
 
   let postsElements = props.posts.map((p: any) =>
     <Post message={p.message} likeCount={p.likeCount} />)
@@ -18,7 +22,7 @@ export const MyPosts = (props: any) => {
   let onPostChange = () => {
     //@ts-ignore 
     let text = newPostElement.current.value;
-    props.updateNewPostText();
+    props.updateNewPostText(text);
   }
 
   return (
