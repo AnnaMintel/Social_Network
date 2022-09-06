@@ -17,12 +17,12 @@ type ActionType = SendMessageActionType | UpdateNewMessageBodyActionType
 
 
 export type DialogsPageType = {
-    dialogsData: Array<DialogItemType >
+    dialogsData: Array<DialogItemType>
     messagesData: Array<MessageType>
     newMessageBody: string
 }
 
-const initialState =  {
+const initialState = {
     dialogsData: [
         { id: 1, name: 'Dimych' },
         { id: 2, name: 'Andrew' },
@@ -45,23 +45,31 @@ const initialState =  {
 
 export const dialogsReducer = (state: DialogsPageType = initialState, action: ActionType) => {
 
+    let stateCopy;
+
     switch (action.type) {
-
-        case UPDATE_NEW_MESSAGE_BODY:
-            state.newMessageBody = action.body;
-            return state;
-
-        case SEND_MESSAGE:
+        case UPDATE_NEW_MESSAGE_BODY: {
+            stateCopy = {
+                ...state,
+                newMessageBody: action.body
+            }
+            return stateCopy;
+        }
+        case SEND_MESSAGE: {
             let body = state.newMessageBody;
-            state.newMessageBody = '';
-            state.messagesData.push({ id: 7, message: body });
-            return state;
-
+            stateCopy = {
+                ...state,
+                newMessageBody: '',
+                messages: [...state.messagesData]
+            }
+            stateCopy.messagesData.push({ id: 7, message: body });
+            return stateCopy;
+        }
         default:
             return state;
 
     }
-} 
+}
 
 export const sendMessageActionCreator = () => ({ type: SEND_MESSAGE })
 

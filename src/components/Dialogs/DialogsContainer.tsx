@@ -8,7 +8,6 @@ import { Dialogs } from "./Dialogs";
 //     dialogsPage: any
 // }
 
-
 // передача данных в коннект
 let mapStateToProps = (state: RootStateType ) => {
     return {
@@ -19,13 +18,13 @@ let mapStateToProps = (state: RootStateType ) => {
 // передача функций в коннект
 let mapDispatchToProps = (dispatch:any) => {
     return {
-        updateNewMessageBody: () => {
-            dispatch(sendMessageActionCreator());
-        },
-        sendMessage: (body: any) => {
+        updateNewMessageBody: (body: any) => {
             dispatch(updateNewMessageBodyActionCreator(body));
+        },
+        sendMessage: () => {
+            dispatch(sendMessageActionCreator());
+            
         }
     }
 }
-
 export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);

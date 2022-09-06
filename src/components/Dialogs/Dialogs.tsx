@@ -7,11 +7,11 @@ import { Message } from "./Message/Message";
 
 export const Dialogs = (props: any) => {
 
-    let dialogsElements = props.dialogsPage.dialogsData.map((dialog: any) =>
-        <DialogItem name={dialog.name} id={dialog.id} />);
+    let dialogsElements = props.dialogsPage.dialogsData.map((d: any) =>
+        <DialogItem name={d.name} key={d.id} id={d.id} />);
 
-    let messagesElements = props.dialogsPage.messagesData.map((message: any) =>
-        <Message message={message.message} id={message.id} />);
+    let messagesElements = props.dialogsPage.messagesData.map((m: any) =>
+        <Message message={m.message} key={m.id} id={m.id} />);
 
     let newMessageBody = props.dialogsPage.newMessageBody;
 

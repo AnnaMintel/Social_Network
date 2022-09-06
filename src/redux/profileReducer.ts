@@ -13,7 +13,7 @@ export type UpdateNewPostTextActionType = {
     newText: string
 }
 
-type ActionType = AddPostActionActionType | UpdateNewPostTextActionType 
+type ActionType = AddPostActionActionType | UpdateNewPostTextActionType
 
 export type ProfilePageType = {
     posts: Array<PostType>
@@ -31,26 +31,28 @@ const initialState = {
 }
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionType) => {
-    switch(action.type) {
-
-        case ADD_POST:
+    switch (action.type) {
+        case ADD_POST: {
             let newPost = {
                 id: 5,
                 message: state.newPostText,
                 likeCount: 0
             };
-            state.posts.push(newPost);
-            state.newPostText = ''; 
+            let stateCopy = { ...state };
+            stateCopy.posts = [...state.posts];
+            stateCopy.posts.push(newPost);
+            stateCopy.newPostText = '';
+            return stateCopy;
+        }
+        case UPDATE_NEW_POST_TEXT: {
+            let stateCopy = {...state};
+            stateCopy.newPostText = action.newText;
+            return stateCopy;
+        }
+        default:
             return state;
-
-        case UPDATE_NEW_POST_TEXT: 
-            state.newPostText = action.newText;
-            return state;
-
-        default: 
-        return state;
     }
-} 
+}
 
 export const addPostActionCreator = () => ({ type: ADD_POST })
 export const updateNewPostTextActionCreator = (text: any) => {
