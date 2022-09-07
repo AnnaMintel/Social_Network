@@ -1,8 +1,9 @@
 import React from "react";
 import s from "./users.module.css";
+import { UsersPropsType } from "./UsersContainer";
 
-export const Users = (props: any) => {
-
+export const Users = (props: UsersPropsType ) => {
+    //@ts-ignore
     if (props.users.length === 0) {
         props.setUsers([
             {
@@ -20,13 +21,13 @@ export const Users = (props: any) => {
                 followed: false, fullName: 'Alex', status: 'I am a student',
                 location: { city: 'Limossol', country: 'Cyprys' }
             }
-        ]
-        )
+        ])
     }
-    
     return <div>
         {
-            props.users.map((u: any) => <div key={u.id}>
+            //@ts-ignore
+            props.users.map((u: any) => {
+            return <div key={u.id}>
                 <span>
                     <div>
                         <img src={u.photoUrl} className={s.userPhoto} />
@@ -43,11 +44,11 @@ export const Users = (props: any) => {
                         <div>{u.status}</div>
                     </span>
                     <span>
-                        <div>{u.location.city}</div>
-                        <div>{u.location.country}</div>
+                        <div>{u.location?.city}</div>
+                        <div>{u.location?.country}</div>
                     </span>
                 </span>
-            </div>
+            </div>}
             )
         }
     </div>

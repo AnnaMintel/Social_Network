@@ -1,45 +1,33 @@
 import { Console } from "console";
 import { PostType } from "../components/Profile/MyPosts/Post/Post";
 
-export type ProfilePageType = {
-    posts: Array<PostType>
-    newPostText: string
+type UserLocation = {
+    city: string,
+    country: string
 }
-export type AddPostActionActionType = {
-    type: 'ADD-POST'
-}
-export type UpdateNewPostTextActionType = {
-    type: 'UPDATE-NEW-POST-TEXT'
-    newText: string
-}
-type ActionType = AddPostActionActionType | UpdateNewPostTextActionType
 
+export type UserPageType = {
+    id: number,
+    photoUrl: string,
+    followed: boolean,
+    fullName: string,
+    status: string,
+    location: UserLocation
+}
+
+export type InitialStateType = {
+    users: Array<UserPageType>
+}
 
 export const FOLLOW = 'FOLLOW';
 export const UNFOLLOW = 'UNFOLLOW';
 export const SET_USERS = 'SET_USERS';
 
-const initialState = {
-    users: [
-        {
-            id: 1, photoUrl: 'https://klike.net/uploads/posts/2020-04/1587719791_1.jpg',
-            followed: false, fullName: 'Hanna', status: 'I am a teacher',
-            location: { city: 'Minsk', country: 'Belarus' }
-        },
-        {
-            id: 2, photoUrl: 'https://klike.net/uploads/posts/2020-04/1587719791_1.jpg',
-            followed: true, fullName: 'Max', status: 'I am a student',
-            location: { city: 'Warshawa', country: 'Poland' }
-        },
-        {
-            id: 3, photoUrl: 'https://klike.net/uploads/posts/2020-04/1587719791_1.jpg',
-            followed: false, fullName: 'Alex', status: 'I am a student',
-            location: { city: 'Limossol', country: 'Cyprys' }
-        }
-    ]
-}
+const initialState: InitialStateType = {
+    users: []
+};
 
-export const usersReducer = (state: any = initialState, action: any) => {
+export const usersReducer = (state: InitialStateType = initialState, action: any): InitialStateType  => {
 
     switch (action.type) {
         case FOLLOW: {
@@ -67,7 +55,7 @@ export const usersReducer = (state: any = initialState, action: any) => {
         case SET_USERS: {
             return {
                 ...state,
-                users: [...state.users, ...action.users]
+                users: action.users
             }
         }
         default:
@@ -77,4 +65,4 @@ export const usersReducer = (state: any = initialState, action: any) => {
 
 export const followAC = (userID: number) => ({ type: FOLLOW, userID })
 export const unfollowAC = (userID: number) => ({ type: UNFOLLOW, userID })
-export const setUsersAC = (users: any) => ({ type: SET_USERS, users })
+export const setUsersAC = (users: Array<UserPageType>) => ({ type: SET_USERS, users })
