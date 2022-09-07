@@ -7,12 +7,17 @@ type UserLocation = {
 }
 
 export type UserPageType = {
+    name: string,
     id: number,
-    photoUrl: string,
-    followed: boolean,
-    fullName: string,
-    status: string,
-    location: UserLocation
+    uniqueUrlName: null | string,
+    photos: PhotoType,
+    status: null | string,
+    followed: boolean
+}
+
+type PhotoType = {
+    small: null | string | undefined,
+    large: null | string | undefined
 }
 
 export type InitialStateType = {
@@ -27,7 +32,7 @@ const initialState: InitialStateType = {
     users: []
 };
 
-export const usersReducer = (state: InitialStateType = initialState, action: any): InitialStateType  => {
+export const usersReducer = (state: InitialStateType = initialState, action: any): InitialStateType => {
 
     switch (action.type) {
         case FOLLOW: {
