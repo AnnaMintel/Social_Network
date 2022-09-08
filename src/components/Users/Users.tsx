@@ -6,7 +6,7 @@ import { UsersPropsType } from "./UsersContainer";
 import userPhoto from '../../assets/images/user.png'
 
 export const Users = (props: UsersPropsType) => {
-    
+
     let getUsers = () => {
         //@ts-ignore
         if (props.users.length === 0) {
@@ -15,7 +15,7 @@ export const Users = (props: UsersPropsType) => {
                 props.setUsers(response.data.items)
             });
         }
-    }
+    } 
 
     return <div>
         <button onClick={getUsers}>get users</button>
