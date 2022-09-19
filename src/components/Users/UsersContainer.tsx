@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { followAC, InitialStateType, setCurrentPageAC, setUsersAC, setUsersTotalCountAC, unfollowAC, UserPageType } from "../../redux/usersReducer";
 import { Users } from "./Users";
+import preloader from "./../../assets/images/preloader.gif"
 
 
 type MapStateToPropsType = {
@@ -43,19 +44,24 @@ class UsersContainer extends React.Component<UsersPropsType> {
     }
 
     render() {
-        //@ts-ignore
-        return <Users totalUsersCount={this.props.totalUsersCount}
-            //@ts-ignore
-            pageSize={this.props.pageSize}
-            //@ts-ignore
-            currentPage={this.props.currentPage}
-            //@ts-ignore
-            onPageChanged={this.onPageChanged}
-            users={this.props.users}
-            follow={this.props.follow}
-            unfollow={this.props.unfollow}
-            
-        />
+
+        return <>
+            {/* @ts-ignore */}
+            {this.props.isFetching ? <img src={preloader } /> : null}
+            {/* @ts-ignore */}
+            <Users totalUsersCount={this.props.totalUsersCount}
+                //@ts-ignore
+                pageSize={this.props.pageSize}
+                //@ts-ignore
+                currentPage={this.props.currentPage}
+                //@ts-ignore
+                onPageChanged={this.onPageChanged}
+                users={this.props.users}
+                follow={this.props.follow}
+                unfollow={this.props.unfollow}
+
+            />
+        </>
     }
 }
 
@@ -66,7 +72,8 @@ let mapStateToProps = (state: any) => {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage
+        currentPage: state.usersPage.currentPage,
+        isFetching: state.usersPage.isFetching
     }
 }
 

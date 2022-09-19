@@ -29,6 +29,7 @@ export const UNFOLLOW = 'UNFOLLOW';
 export const SET_USERS = 'SET_USERS';
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 export const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
+export const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 
 const initialState: InitialStateType = {
@@ -36,7 +37,8 @@ const initialState: InitialStateType = {
     //@ts-ignore
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: true
 };
 
 export const usersReducer = (state: InitialStateType = initialState, action: any): InitialStateType => {
@@ -82,6 +84,13 @@ export const usersReducer = (state: InitialStateType = initialState, action: any
                 ...state,
                 //@ts-ignore
                 totalUsersCount: action.count
+            }
+        }
+        case TOGGLE_IS_FETCHING: {
+            return {
+                ...state,
+                //@ts-ignore
+                isFetching: action.count
             }
         }
         default:
