@@ -4,9 +4,6 @@ import userPhoto from '../../assets/images/user.png';
 
 export let Users = (props: any) => {
 
-    console.log(props.totalUsersCount);
-    console.log(props.pageSize);
-
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
     let pages = [];
@@ -20,7 +17,7 @@ export let Users = (props: any) => {
                         // @ts-ignore
                         return <span className={props.currentPage === p && s.selectedPage}
                         //@ts-ignore
-                        onClick={(e) => {onPageChanged(p)}}>{p}</span>
+                        onClick={(e) => {props.onPageChanged(p)}}>{p}</span>
                     })}
                 </div>
             {
