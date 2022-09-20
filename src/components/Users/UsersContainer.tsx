@@ -4,8 +4,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { followAC, InitialStateType, setCurrentPageAC, setUsersAC, setUsersTotalCountAC, unfollowAC, UserPageType } from "../../redux/usersReducer";
+import { Preloader } from "../common/preloader/Preloader";
 import { Users } from "./Users";
-import preloader from "./../../assets/images/preloader.gif"
 
 
 type MapStateToPropsType = {
@@ -24,8 +24,12 @@ class UsersContainer extends React.Component<UsersPropsType> {
 
     componentDidMount() {
         //@ts-ignore
+        this.props.toggleIsFetchingAC(true);
+        //@ts-ignore
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then((response: any) => {
+                //@ts-ignore
+                this.props.toggleIsFetchingAC(false);
                 this.props.setUsers(response.data.items);
                 //@ts-ignore
                 this.props.setTotalUsersCount(response.data.totalCount)
@@ -36,8 +40,12 @@ class UsersContainer extends React.Component<UsersPropsType> {
         //@ts-ignore
         this.props.setCurrentPage(pageNumber);
         //@ts-ignore
+        this.props.toggleIsFetchingAC(true);
+        //@ts-ignore
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
             .then((response: any) => {
+                //@ts-ignore
+                this.props.toggleIsFetchingAC(false);
                 this.props.setUsers(response.data.items)
 
             });
@@ -47,7 +55,7 @@ class UsersContainer extends React.Component<UsersPropsType> {
 
         return <>
             {/* @ts-ignore */}
-            {this.props.isFetching ? <img src={preloader } /> : null}
+            {this.props.isFetching ? <Preloader/> : null}
             {/* @ts-ignore */}
             <Users totalUsersCount={this.props.totalUsersCount}
                 //@ts-ignore
@@ -65,8 +73,6 @@ class UsersContainer extends React.Component<UsersPropsType> {
     }
 }
 
-
-// передача данных в коннект
 let mapStateToProps = (state: any) => {
     return {
         users: state.usersPage.users,
@@ -77,7 +83,6 @@ let mapStateToProps = (state: any) => {
     }
 }
 
-// передача функций в коннект
 let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
         follow: (userID: number) => {
@@ -96,6 +101,10 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
         //@ts-ignore
         setTotalUsersCount: (totalCount) => {
             dispatch(setUsersTotalCountAC(totalCount));
+        },
+        //@ts-ignore
+        toggleIsFetchingAC: (isFetching) => {
+            dispatch(toggleIsFetchingAC(isFetching));
         }
     }
 }
