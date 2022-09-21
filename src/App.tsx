@@ -19,7 +19,7 @@ const App = (props: any) => {
         <Navbar />
         <div className='app-wrapper-content'>
           <Routes>
-            <Route path="/profile" 
+            <Route path="/profile/:id" 
               element={<ProfileContainer />} />
             <Route path="/dialogs"
               element={<DialogsContainer />} />
