@@ -1,8 +1,13 @@
 import React from "react";
+import { ProfileDataType } from "../../../redux/profileReducer";
 import { Preloader } from "../../common/preloader/Preloader";
 import s from "./ProfileInfo.module.css";
 
-export const ProfileInfo = (props:any) => {
+type ProfileInfoType = {
+  profile: ProfileDataType | null
+}
+
+export const ProfileInfo = (props: ProfileInfoType) => {
   if(!props.profile) {
     return <Preloader />
   }
@@ -18,7 +23,6 @@ export const ProfileInfo = (props:any) => {
         <img src={props.profile.photos.large} />
         ava + discription
       </div>
-
     </div >
   );
 };

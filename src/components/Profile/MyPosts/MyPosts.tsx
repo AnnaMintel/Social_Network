@@ -10,8 +10,8 @@ export const MyPosts = (props: any) => {
 // const state = useSelector(state => state)
 // console.log(state)
 
-  let postsElements = props.posts.map((p: any) =>
-    <Post message={p.message} likeCount={p.likeCount} />)
+  let postsElements = props.posts.map((p: any, index: number) =>
+    <Post key={index} message={p.message} likeCount={p.likeCount} />)
 
   let newPostElement = React.createRef();
 

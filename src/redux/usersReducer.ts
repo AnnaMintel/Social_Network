@@ -1,6 +1,3 @@
-import { Console } from "console";
-import { PostType } from "../components/Profile/MyPosts/Post/Post";
-
 type UserLocation = {
     city: string,
     country: string
@@ -21,6 +18,10 @@ type PhotoType = {
 }
 
 export type InitialStateType = {
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    isFetching: true
     users: Array<UserPageType>
 }
 
@@ -34,7 +35,6 @@ export const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 const initialState: InitialStateType = {
     users: [],
-    //@ts-ignore
     pageSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
@@ -75,21 +75,18 @@ export const usersReducer = (state: InitialStateType = initialState, action: any
         case SET_CURRENT_PAGE: {
             return {
                 ...state,
-                //@ts-ignore
                 currentPage: action.currentPage
             }
         }
         case SET_TOTAL_USERS_COUNT: {
             return {
                 ...state,
-                //@ts-ignore
                 totalUsersCount: action.count
             }
         }
         case TOGGLE_IS_FETCHING: {
             return {
                 ...state,
-                //@ts-ignore
                 isFetching: action.isFetching
             }
         }
@@ -101,6 +98,6 @@ export const usersReducer = (state: InitialStateType = initialState, action: any
 export const follow = (userID: number) => ({ type: FOLLOW, userID })
 export const unfollow = (userID: number) => ({ type: UNFOLLOW, userID })
 export const setUsers = (users: Array<UserPageType>) => ({ type: SET_USERS, users })
-export const setCurrentPage = (currentPage: any) => ({ type: SET_CURRENT_PAGE, currentPage })
-export const setUsersTotalCount = (totalUsersCount: any) => ({ type: SET_TOTAL_USERS_COUNT, count: totalUsersCount })
-export const toggleIsFetching = (isFetching: any) => ({ type: TOGGLE_IS_FETCHING, isFetching })
+export const setCurrentPage = (currentPage: number) => ({ type: SET_CURRENT_PAGE, currentPage })
+export const setUsersTotalCount = (totalUsersCount: number) => ({ type: SET_TOTAL_USERS_COUNT, count: totalUsersCount })
+export const toggleIsFetching = (isFetching: boolean) => ({ type: TOGGLE_IS_FETCHING, isFetching })
