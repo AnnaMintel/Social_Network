@@ -23,9 +23,17 @@ export const usersAPI = {
     }
 }
 
-// export const getUsers2 = (currentPage:number = 1, pageSize: number = 10) => {
-//     return instance.get(`follow?page=${currentPage}&count=${pageSize}`)
-//         .then(response => {
-//             response.data
-//         })
-// }
+export const headerAPI = {
+    getHeader: async () => {
+        const response = await instance.get(`auth/me`);
+        return response.data;
+    }
+}
+
+export const profileAPI = {
+    getProfile: async (userId: number) => {
+        const response = await instance.get(`profile/${userId}`);
+        return response.data;
+    }
+}
+
