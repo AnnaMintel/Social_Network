@@ -1,4 +1,5 @@
 import { Console } from "console";
+import { profileAPI } from "../api/api";
 import { PostType } from "../components/Profile/MyPosts/Post/Post";
 
 export type AddPostActionActionType = {
@@ -94,9 +95,19 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
 }
 
 export const addPostActionCreator = () => ({ type: ADD_POST })
-export const setUserProfile = (profile: ProfileDataType) => ({ type:  SET_USER_PROFILE, profile })
+const setUserProfile = (profile: ProfileDataType) => ({ type:  SET_USER_PROFILE, profile })
 export const updateNewPostTextActionCreator = (text: string) => {
     return {
         type: UPDATE_NEW_POST_TEXT, newText: text
     }
 }
+
+//thunk
+export const getUserProfile = (userId: number) => {
+    return (dispatch: any) => {
+        profileAPI.getProfile(userId).then((data: any) => {
+            dispatch(setUserProfile(data));
+          });
+    }
+}
+

@@ -9,8 +9,10 @@
 
 .loginBlock {
   float: right;
+  background-color: pink
 }
 
-.loginBlock a {
-  color: white;
+a {
+  color: black;
+  
 }
