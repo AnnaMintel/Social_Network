@@ -7,9 +7,6 @@ import { Post } from "./Post/Post";
 
 export const MyPosts = (props: any) => {
 
-// const state = useSelector(state => state)
-// console.log(state)
-
   let postsElements = props.posts.map((p: any, index: number) =>
     <Post key={index} message={p.message} likeCount={p.likeCount} />)
 
@@ -20,7 +17,7 @@ export const MyPosts = (props: any) => {
   };
 
   let onPostChange = () => {
-    //@ts-ignore 
+    //@ts-ignore
     let text = newPostElement.current.value;
     props.updateNewPostText(text);
   }

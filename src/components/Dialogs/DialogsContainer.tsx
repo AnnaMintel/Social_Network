@@ -1,12 +1,8 @@
 import React, { useState } from "react";
 import { connect, useDispatch } from "react-redux";
 import { sendMessageActionCreator, updateNewMessageBodyActionCreator } from "../../redux/dialogsReducer";
-import store, { RootStateType } from "../../redux/store";
+import { RootStateType } from "../../redux/redux-store";
 import { Dialogs } from "./Dialogs";
-
-// type mapStateToPropsType = {
-//     dialogsPage: any
-// }
 
 // передача данных в коннект
 let mapStateToProps = (state: RootStateType ) => {
@@ -23,7 +19,6 @@ let mapDispatchToProps = (dispatch:any) => {
         },
         sendMessage: () => {
             dispatch(sendMessageActionCreator());
-            
         }
     }
 }

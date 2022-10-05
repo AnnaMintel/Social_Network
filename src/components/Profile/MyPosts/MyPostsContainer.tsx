@@ -1,7 +1,7 @@
 import React from "react";
 import { connect, useDispatch } from "react-redux";
 import { addPostActionCreator, updateNewPostTextActionCreator } from "../../../redux/profileReducer";
-import { RootStateType } from "../../../redux/store";
+import { RootStateType } from "../../../redux/redux-store";
 import { MyPosts } from "./MyPosts";
 
 
@@ -16,7 +16,7 @@ let mapStateToProps = (state: RootStateType ) => {
 // передача функций в коннект
 let mapDispatchToProps = (dispatch: any) => {
   return {
-    updateNewPostText: (text: any) => {
+    updateNewPostText: (text: string) => {
       const action = updateNewPostTextActionCreator(text);
       dispatch(action);
     },
