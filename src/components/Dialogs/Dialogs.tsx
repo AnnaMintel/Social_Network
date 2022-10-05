@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { sendMessageActionCreator, updateNewMessageBodyActionCreator } from "../../redux/dialogsReducer";
+import { Navigate, useNavigate } from "react-router-dom";
 import { DialogItem } from "./DialogItem/DialogItem";
 import s from "./Dialogs.module.css";
 import { Message } from "./Message/Message";
@@ -23,7 +22,9 @@ export const Dialogs = (props: any) => {
         let body = event.target.value;
         props.updateNewMessageBody(body);
     }
-    
+
+    //redirect
+    if (!props.isAuth) return <Navigate to={'/login'} />
 
     return (
         <div className={s.dialogs}>
@@ -34,11 +35,11 @@ export const Dialogs = (props: any) => {
                 <div> {messagesElements} </div>
                 <div>
                     <div>
-                        <textarea 
+                        <textarea
                             value={newMessageBody}
-                            onChange={onSendMessageChange}  
+                            onChange={onSendMessageChange}
                             placeholder="Enter your message"
-                            />
+                        />
                     </div>
                     <div>
                         <button onClick={onSendMessageClick}>send</button>

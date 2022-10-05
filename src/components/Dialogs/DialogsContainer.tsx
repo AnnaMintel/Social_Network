@@ -7,7 +7,8 @@ import { Dialogs } from "./Dialogs";
 // передача данных в коннект
 let mapStateToProps = (state: RootStateType ) => {
     return {
-        dialogsPage: state.dialogsPage
+        dialogsPage: state.dialogsPage,
+        isAuth: state.auth.isAuth
     }
 }
 

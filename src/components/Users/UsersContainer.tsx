@@ -13,6 +13,7 @@ import {
 import { Preloader } from "../common/preloader/Preloader";
 import { Users } from "./Users";
 import { RootStateType } from "../../redux/redux-store";
+import { Navigate } from "react-router-dom";
 
 type MapStateToPropsType = {
     users: Array<UserPageType>
@@ -44,6 +45,9 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
     }
 
     render() {
+        //@ts-ignore
+        if (!this.props.isAuth) return <Navigate to={'/login'} />
+
         return <>
             {this.props.isFetching ? <Preloader /> : null}
             <Users totalUsersCount={this.props.totalUsersCount}
@@ -66,11 +70,14 @@ let mapStateToProps = (state: RootStateType) => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
+        followingInProgress: state.usersPage.followingInProgress,
+        isAuth: state.auth.isAuth
     }
 }
 
 export default connect(mapStateToProps,
-    { follow, unfollow, setCurrentPage, 
-        toggleFollowingProgress, getUsers  })
+    {
+        follow, unfollow, setCurrentPage,
+        toggleFollowingProgress, getUsers
+    })
     (UsersContainer);
