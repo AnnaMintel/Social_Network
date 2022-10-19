@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Navigate, useParams } from 'react-router-dom';
 import { compose } from "redux";
@@ -9,24 +9,20 @@ import { Profile } from "./Profile";
 
 type MapStatePropsType = {
   profile: ProfileDataType | null
-  param?: any
+  params?: any
 }
 
 export type ProfileContainerType = MapStatePropsType
 
-class ProfileContainer extends React.Component<ProfileContainerType> {
+const ProfileContainer = (props: any) => {
 
-  componentDidMount() {
-    let userId = this.props.param.userId;
-    //@ts-ignore
-    this.props.getUserProfile(userId);
-  }
+  let { userId } = useParams();
 
-  render() {
-    return (
-      <Profile {...this.props} profile={this.props.profile} />
-    );
-  }
+  useEffect(() => {
+    props.getUserProfile(userId);
+  }, [])
+  return <Profile {...props} profile={props.profile} />
+
 };
 
 let mapStateToProps = (state: RootStateType) => ({
@@ -35,6 +31,6 @@ let mapStateToProps = (state: RootStateType) => ({
 
 export default compose<React.ComponentType>(
   connect(mapStateToProps, { getUserProfile }),
-  withAuthRedirect
+  // withAuthRedirect
 )(ProfileContainer)
 
