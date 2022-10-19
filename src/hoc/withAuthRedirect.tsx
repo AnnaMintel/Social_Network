@@ -13,7 +13,7 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
     }
 }
 
-export function withAuthRedirectz<T>(Component: ComponentType<T>) {
+export function withAuthRedirect<T>(Component: ComponentType<T>) {
 
     const RedirectComponent = (props: any) => {
         let {isAuth, ...restProps} = props
