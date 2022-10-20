@@ -40,7 +40,7 @@ export const profileAPI = {
         return response.data;
     },
     updateStatus: async (status: string) => {
-        const response = await instance.put('profile/status/', {status});
+        const response = await instance.put('profile/status', {status});
         return response.data;
     }
 }

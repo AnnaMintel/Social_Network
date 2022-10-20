@@ -24,7 +24,7 @@ export const ProfileInfo = (props: ProfileInfoType) => {
        
       <div className={s.discriptionBlock}>
         <img src={props.profile.photos.large} />
-
+        
         <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus}/>
 
         <div>Full name: {props.profile.fullName}</div>
