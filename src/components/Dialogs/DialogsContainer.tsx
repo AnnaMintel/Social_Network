@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect, useDispatch } from "react-redux";
 import { compose } from "redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
-import { sendMessageActionCreator, updateNewMessageBodyActionCreator } from "../../redux/dialogsReducer";
+import { sendMessageActionCreator } from "../../redux/dialogsReducer";
 import { RootStateType } from "../../redux/redux-store";
 import { Dialogs } from "./Dialogs";
 
@@ -17,11 +17,8 @@ let mapStateToProps = (state: RootStateType) => {
 // передача функций в коннект
 let mapDispatchToProps = (dispatch: any) => {
     return {
-        updateNewMessageBody: (body: any) => {
-            dispatch(updateNewMessageBodyActionCreator(body));
-        },
-        sendMessage: () => {
-            dispatch(sendMessageActionCreator());
+        sendMessage: (newMessageBody: string) => {
+            dispatch(sendMessageActionCreator(newMessageBody));
         }
     }
 }
