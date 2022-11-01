@@ -1,3 +1,4 @@
+import { appReducer } from './appReducer';
 import { authReducer } from './authReducer';
 import { usersReducer } from './usersReducer';
 import { sidebarReducer } from './sidebarReducer';
@@ -14,7 +15,8 @@ const reducers = combineReducers({
     sidebarPage: sidebarReducer,
     usersPage: usersReducer,
     auth: authReducer,
-    form: formReducer
+    form: formReducer,
+    app: appReducer
 });
 
 export type RootStateType = ReturnType<typeof reducers>;

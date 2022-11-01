@@ -36,15 +36,14 @@ const setUserDataAC = (userId: null, email: null, login: null, isAuth: boolean) 
 })
 
 //thunk
-export const getAuthUserData = () => {
-    return (dispatch: any) => {
-        headerAPI.getHeader().then((data: any) => {
+export const getAuthUserData = () => (dispatch: any) => {
+    return headerAPI.getHeader()
+        .then((data: any) => {
             if (data.resultCode === 0) {
                 let { id, email, login } = data.data;
                 dispatch(setUserDataAC(id, email, login, true));
             }
         });
-    }
 }
 
 // thunk for login

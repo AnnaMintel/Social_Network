@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Navigate, useParams } from 'react-router-dom';
 import { compose } from "redux";
-import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { getUserProfile, getUserStatus, ProfileDataType, updateUserStatus } from "../../redux/profileReducer";
 import { RootStateType } from "../../redux/redux-store";
 import { Profile } from "./Profile";
@@ -22,15 +21,15 @@ const ProfileContainer = (props: any) => {
 
   if (!userId) {
     userId = props.authUserId;
+    if (!userId) {
+      props.history.push('/login');
+    }
   }
 
   useEffect(() => {
     props.getUserProfile(userId);
     props.getUserStatus(userId);
   }, [])
-
-  //redirect
-  if (!props.isAuth) return <Navigate to={'/login'} />
 
   return <Profile
     {...props}
