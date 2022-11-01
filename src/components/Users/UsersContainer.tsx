@@ -46,8 +46,8 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
     }
 
     render() {
-        //@ts-ignore ПОКА ЗАКОММЕНТИМ, ТАК КАК ПАДАЕТ КОРС ОШИБКА
-        // if (!this.props.isAuth) return <Navigate to={'/login'} />
+        //@ts-ignore
+        if (!this.props.isAuth) return <Navigate to={'/login'} />
 
         return <>
             {this.props.isFetching ? <Preloader /> : null}

@@ -25,6 +25,9 @@ const ProfileContainer = (props: any) => {
     props.getUserStatus(userId);
   }, [])
 
+  //redirect
+  if (!props.isAuth) return <Navigate to={'/login'} />
+
   return <Profile
     {...props}
     profile={props.profile}

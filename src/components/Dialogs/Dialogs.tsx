@@ -17,9 +17,12 @@ export const Dialogs = (props: any) => {
 
     let newMessageBody = props.dialogsPage.newMessageBody;
 
-    let addNewMessage = (values:any) => {
+    let addNewMessage = (values: any) => {
         props.sendMessage(values.newMessageBody);
     }
+
+    // // redirect
+    // if (!props.isAuth) return <Navigate to={'/login'} />
 
     return (
         <div className={s.dialogs}>
@@ -28,7 +31,7 @@ export const Dialogs = (props: any) => {
             </div>
             <div className={s.messages}>
                 <div> {messagesElements} </div>
-                <AddMessageFormRedux onSubmit={addNewMessage}/>
+                <AddMessageFormRedux onSubmit={addNewMessage} />
             </div>
         </div>
     )
@@ -40,10 +43,10 @@ export const AddMessageForm = (props: any) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-            <Field name='newMessageBody'
-                component={Textarea}
-                placeholder={'Enter your message'}
-                validate={[requiredFiels, maxLength100]} />
+                <Field name='newMessageBody'
+                    component={Textarea}
+                    placeholder={'Enter your message'}
+                    validate={[requiredFiels, maxLength100]} />
             </div>
             <div>
                 <button>send</button>

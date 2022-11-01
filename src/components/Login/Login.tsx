@@ -2,9 +2,13 @@ import React from 'react'
 import { Field, InjectedFormProps, reduxForm } from 'redux-form'
 import { requiredFiels } from '../../utils/validators/validators'
 import { Input } from '../common/FormControls/FormsControls'
+import { connect } from 'react-redux'
+import { login } from './../../redux/authReducer'
+import { Navigate } from 'react-router-dom'
+import { RootStateType } from '../../redux/redux-store'
 
 type FormDataType = {
-  login: string
+  email: string
   password: string
   rememberMe: boolean
 }
@@ -14,8 +18,8 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props: any)
     <form onSubmit={props.handleSubmit}>
       <div>
         <Field
-          placeholder={'Login'}
-          name={'login'}
+          placeholder={'Email'}
+          name={'email'}
           component={Input}
           validate={[requiredFiels]}
         />
@@ -23,6 +27,7 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props: any)
       <div>
         <Field
           placeholder={'Password'}
+          type={'password'}
           name={'password'}
           component={Input}
           validate={[requiredFiels]}
@@ -44,11 +49,13 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props: any)
 export const LoginReduxForm = reduxForm<FormDataType>({ form: 'login' })(LoginForm)
 
 
-export const Login = () => {
-
-  const onSubmit = (formData: FormDataType) => {
-    console.log(formData);
+const Login = (props: any) => {
+  const onSubmit = (data: FormDataType) => {
+    props.login(data.email, data.password, data.rememberMe);
   }
+
+  // redirect 
+  if (props.isAuth) return <Navigate to={'/profile'} />
 
   return (
     <div>
@@ -57,3 +64,7 @@ export const Login = () => {
     </div>
   )
 }
+const mapStateToProps = (state: RootStateType) => ({
+  isAuth: state.auth.isAuth
+})
+export const LoginContainer = connect(mapStateToProps, { login })(Login)

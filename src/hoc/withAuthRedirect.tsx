@@ -18,8 +18,7 @@ export function withAuthRedirect<T>(Component: ComponentType<T>) {
     const RedirectComponent = (props: any) => {
         let {isAuth, ...restProps} = props
         
-        // ПОКА ЗАКОММЕНТИМ, ТАК КАК ПАДАЕТ КОРС ОШИБКА
-        // if (!isAuth) return <Navigate to={'/login'} />
+        if (!isAuth) return <Navigate to={'/login'} />
 
         return <Component {...restProps } />
     }

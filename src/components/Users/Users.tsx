@@ -14,7 +14,6 @@ type UsersType = {
     users: Array<UserPageType>
     follow: (userID: number) => void
     unfollow: (userID: number) => void
-    // toggleFollowingProgress: (isFetching: boolean, userID: number) => void
     followingInProgress: Array<number>
 }
 
@@ -26,7 +25,6 @@ export let Users = (props: UsersType) => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
     }
-
 
 
     return <div>
