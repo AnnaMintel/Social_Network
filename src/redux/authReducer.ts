@@ -1,3 +1,4 @@
+import { stopSubmit } from "redux-form";
 import { headerAPI } from "../api/api";
 
 type InitialStateType = {
@@ -49,9 +50,13 @@ export const getAuthUserData = () => {
 // thunk for login
 export const login = (email: any, password: any, rememberMe: any) => (dispatch: any) => {
     headerAPI.login(email, password, rememberMe)
-        .then((data: any) => {
-            if (data.resultCode === 0) {
+        .then((response: any) => {
+            if (response.resultCode === 0) {
                 dispatch(getAuthUserData());
+            } else {
+                let message = response.messages.length > 0 ? response.messages[0]
+                    : 'Data is incorrect';
+                dispatch(stopSubmit('login', { _error: message }));
             }
         });
 }

@@ -20,6 +20,10 @@ const ProfileContainer = (props: any) => {
 
   let { userId } = useParams();
 
+  if (!userId) {
+    userId = props.authUserId;
+  }
+
   useEffect(() => {
     props.getUserProfile(userId);
     props.getUserStatus(userId);
@@ -38,7 +42,9 @@ const ProfileContainer = (props: any) => {
 
 let mapStateToProps = (state: RootStateType) => ({
   profile: state.profilePage.profile,
-  status: state.profilePage.status
+  status: state.profilePage.status,
+  authUserId: state.auth.userId,
+  isAuth: state.auth.isAuth
 })
 
 export default compose<React.ComponentType>(
