@@ -21,15 +21,15 @@ const ProfileContainer = (props: any) => {
 
   if (!userId) {
     userId = props.authUserId;
-    if (!userId) {
-      props.history.push('/login');
-    }
   }
 
   useEffect(() => {
     props.getUserProfile(userId);
     props.getUserStatus(userId);
   }, [])
+
+  //redirect
+  if (!props.isAuth) return <Navigate to={'/login'} />
 
   return <Profile
     {...props}
