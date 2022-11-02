@@ -12,8 +12,6 @@ import {
 import { Preloader } from "../common/preloader/Preloader";
 import { Users } from "./Users";
 import { RootStateType } from "../../redux/redux-store";
-import { Navigate } from "react-router-dom";
-import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { getPageSize, getTotalUsersCount, getCurrentPage, getisFetching, getFollowingInProgress, getIsAuth, getusers } from "../../redux/usersSelectors";
 
 type MapStateToPropsType = {

@@ -1,5 +1,4 @@
 import React from "react";
-import s from "./ProfileInfo.module.css";
 
 type ProfileStatusType = {
   status: any
