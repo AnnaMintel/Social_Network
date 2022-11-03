@@ -18,12 +18,18 @@ export type SetUserStatusType = {
     type: 'SET_USER_STATUS'
     status: string
 }
-type ActionType = AddPostActionActionType | UpdateNewPostTextActionType | SetUserProfile | SetUserStatusType
+export type DeletePostActionCreatorType = {
+    type: 'DELETE_AC_POST'
+    postId: any
+}
+type ActionType = AddPostActionActionType | UpdateNewPostTextActionType
+    | SetUserProfile | SetUserStatusType | DeletePostActionCreatorType
 
 export const ADD_POST = 'ADD-POST';
 export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 export const SET_USER_PROFILE = 'SET_USER_PROFILE';
 export const SET_USER_STATUS = 'SET_USER_STATUS';
+export const DELETE_AC_POST = 'DELETE_AC_POST';
 
 export type ProfilePageType = {
     posts: Array<PostType>
@@ -102,6 +108,12 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
                 status: action.status
             };
         }
+        case DELETE_AC_POST: {
+            return {
+                ...state,
+                posts: state.posts.filter(p => p.id != action.postId)
+            };
+        }
         default:
             return state;
     }
@@ -113,6 +125,11 @@ const setUserStatus = (status: ProfileDataType) => ({ type: SET_USER_STATUS, sta
 export const updateNewPostTextActionCreator = (text: string) => {
     return {
         type: UPDATE_NEW_POST_TEXT, newText: text
+    }
+}
+export const deletePostActionCreator = (postId: any) => {
+    return {
+        type: DELETE_AC_POST, postId
     }
 }
 
