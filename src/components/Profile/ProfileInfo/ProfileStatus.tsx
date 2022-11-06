@@ -1,6 +1,6 @@
 import React from "react";
 
-type ProfileStatusType = {
+export type ProfileStatusType = {
   status: any
   updateUserStatus: any
 }

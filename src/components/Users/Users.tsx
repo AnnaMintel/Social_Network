@@ -18,7 +18,7 @@ export let Users = ({ currentPage, onPageChanged, totalUsersCount, pageSize, use
 
     return <div>
         <Pagination currentPage={currentPage} onPageChanged={onPageChanged}
-            totalUsersCount={totalUsersCount} pageSize={pageSize} />
+            totalItemsCount={totalUsersCount} pageSize={pageSize} />
         <div>
             {
                 users.map((u: UserPageType) =>
