@@ -134,26 +134,19 @@ export const deletePostActionCreator = (postId: any) => {
 }
 
 //thunk
-export const getUserProfile = (userId: number) => {
-    return (dispatch: any) => {
-        profileAPI.getProfile(userId).then((data: any) => {
-            dispatch(setUserProfile(data));
-        });
-    }
+export const getUserProfile = (userId: number) => async (dispatch: any) => {
+    let response = await profileAPI.getProfile(userId);
+    dispatch(setUserProfile(response.data));
 }
-export const getUserStatus = (userId: number) => {
-    return (dispatch: any) => {
-        profileAPI.getStatus(userId).then((data: any) => {
-            dispatch(setUserStatus(data));
-        });
-    }
+
+export const getUserStatus = (userId: number) => async (dispatch: any) => {
+    let response = await profileAPI.getStatus(userId);
+    dispatch(setUserStatus(response.data));
 }
-export const updateUserStatus = (status: any) => {
-    return (dispatch: any) => {
-        profileAPI.updateStatus(status).then((data: any) => {
-            if (data.data.resultCode === 0) {
-                dispatch(setUserStatus(status));
-            }
-        });
+
+export const updateUserStatus = (status: any) => async (dispatch: any) => {
+    let response = await profileAPI.updateStatus(status)
+    if (response.data.resultCode === 0) {
+        dispatch(setUserStatus(status));
     }
 }

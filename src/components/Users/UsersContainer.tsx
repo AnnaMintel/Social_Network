@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { compose, Dispatch } from "redux";
+import { compose } from "redux";
 import {
     follow,
     getUsers,
@@ -34,17 +34,18 @@ export type UsersContainerPropsType = MapStateToPropsType & MapDispatchToPropsTy
 class UsersContainer extends React.Component<UsersContainerPropsType> {
 
     componentDidMount() {
+        const {currentPage, pageSize} = this.props;
         //@ts-ignore
-        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        this.props.getUsers(currentPage, pageSize);
     }
 
     onPageChanged = (pageNumber: number) => {
+        const {pageSize} = this.props;
         //@ts-ignore
-        this.props.getUsers(pageNumber, this.props.pageSize);
+        this.props.getUsers(pageNumber, pageSize);
     }
 
     render() {
-        
         return <>
             {this.props.isFetching ? <Preloader /> : null}
             <Users totalUsersCount={this.props.totalUsersCount}
@@ -59,18 +60,6 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
         </>
     }
 }
-
-// let mapStateToProps = (state: RootStateType) => {
-//     return {
-//         users: state.usersPage.users,
-//         pageSize: state.usersPage.pageSize,
-//         totalUsersCount: state.usersPage.totalUsersCount,
-//         currentPage: state.usersPage.currentPage,
-//         isFetching: state.usersPage.isFetching,
-//         followingInProgress: state.usersPage.followingInProgress,
-//         isAuth: state.auth.isAuth
-//     }
-// }
 
 let mapStateToProps = (state: RootStateType) => {
     return {
