@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Navigate, useParams } from 'react-router-dom';
 import { compose } from "redux";
-import { getUserProfile, getUserStatus, ProfileDataType, updateUserStatus } from "../../redux/profileReducer";
+import { getUserProfile, getUserStatus, ProfileDataType, savePhoto, updateUserStatus } from "../../redux/profileReducer";
 import { RootStateType } from "../../redux/redux-store";
 import { Profile } from "./Profile";
 
@@ -11,6 +11,7 @@ type MapStatePropsType = {
   params?: any
   status: string
   updateUserStatus: any
+  savePhoto: any
 }
 
 export type ProfileContainerType = MapStatePropsType
@@ -26,7 +27,7 @@ const ProfileContainer = (props: any) => {
   useEffect(() => {
     props.getUserProfile(userId);
     props.getUserStatus(userId);
-  }, [])
+  }, [userId])
 
   //redirect
   if (!props.isAuth) return <Navigate to={'/login'} />
@@ -35,7 +36,8 @@ const ProfileContainer = (props: any) => {
     {...props}
     profile={props.profile}
     status={props.status}
-    updateUserStatus={props.updateUserStatus} />
+    updateUserStatus={props.updateUserStatus}
+    savePhoto={props.savePhoto} />
 
 };
 
@@ -47,6 +49,6 @@ let mapStateToProps = (state: RootStateType) => ({
 })
 
 export default compose<React.ComponentType>(
-  connect(mapStateToProps, { getUserProfile, getUserStatus, updateUserStatus })
+  connect(mapStateToProps, { getUserProfile, getUserStatus, updateUserStatus, savePhoto })
 )(ProfileContainer)
 

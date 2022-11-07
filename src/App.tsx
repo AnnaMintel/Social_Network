@@ -54,7 +54,6 @@ class App extends React.Component {
   };
 };
 
-
 const mapStateToProps = (state: RootStateType) => ({
   initialized: state.app.initialized
 })

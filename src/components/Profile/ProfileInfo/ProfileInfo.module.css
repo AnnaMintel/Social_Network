@@ -1,3 +1,8 @@
 .discriptionBlock {
   padding: 10px;
 }
+
+.userAvatar {
+  max-width: 200px;
+}
+
