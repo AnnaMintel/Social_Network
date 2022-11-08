@@ -1,21 +1,34 @@
 import { stopSubmit } from "redux-form";
 import { headerAPI } from "../api/api";
 
-type InitialStateType = {
-    userId: null,
-    email: null,
-    login: null,
+
+// types
+type SetUserDataActionDataType = {
+    userId: number | null,
+    email: string | null,
+    login: string | null,
     isAuth: boolean
 }
+type SetUserDataACType = {
+    type: typeof SET_USER_DATA,
+    data: SetUserDataActionDataType
+}
+// type GetCaptchaUrlType = {
+//     type: typeof GET_CAPTCHA_URL_SUCCESS,
+//     payload: { captchaUrl: string}
+// }
+
+export type InitialStateType = typeof initialState;
+
+const initialState = {
+    userId: null as number | null,
+    email: null as string | null,
+    login: null as string | null,
+    isAuth: false as boolean
+    // captchaUrl: null as string | null
+};
 
 export const SET_USER_DATA = 'samurai-network/auth/SET_USER_DATA';
-
-const initialState: InitialStateType = {
-    userId: null,
-    email: null,
-    login: null,
-    isAuth: false
-};
 
 export const authReducer = (state: InitialStateType = initialState, action: any): InitialStateType => {
     switch (action.type) {
@@ -30,10 +43,18 @@ export const authReducer = (state: InitialStateType = initialState, action: any)
     }
 }
 
-const setUserDataAC = (userId: null, email: null, login: null, isAuth: boolean) => ({
-    type: SET_USER_DATA,
-    data: { userId, email, login, isAuth }
-})
+const setUserDataAC = (userId: number | null,
+    email: string | null,
+    login: string | null,
+    isAuth: boolean): SetUserDataACType => ({
+        type: SET_USER_DATA,
+        data: { userId, email, login, isAuth }
+    })
+
+// export const getCaptchaUrlSuccess = (captchaUrl: string): GetCaptchaUrlType => {
+//     type: GET_CAPTCHA_URL_SUCCESS, payload: {captchaUrl}
+// }
+
 
 //thunk
 export const getAuthUserData = () => async (dispatch: any) => {
@@ -45,7 +66,7 @@ export const getAuthUserData = () => async (dispatch: any) => {
 };
 
 // thunk for login
-export const login = (email: any, password: any, rememberMe: any) => async (dispatch: any) => {
+export const login = (email: string, password: string, rememberMe: boolean) => async (dispatch: any) => {
     let response = await headerAPI.login(email, password, rememberMe);
     if (response.resultCode === 0) {
         dispatch(getAuthUserData());

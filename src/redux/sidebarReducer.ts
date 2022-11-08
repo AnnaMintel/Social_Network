@@ -1,13 +1,10 @@
 
+//types
+type InitialState = typeof initialState;
 
-export type SidebarType = {
-
-}
 
 const initialState = {}
 
-export const sidebarReducer = (state: SidebarType = initialState, action: any) => {
-
-
+export const sidebarReducer = (state: InitialState = initialState, action: any) => {
     return state;
 } 

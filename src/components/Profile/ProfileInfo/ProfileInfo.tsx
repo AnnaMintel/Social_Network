@@ -38,9 +38,18 @@ export const ProfileInfo = ({profile, status, updateUserStatus, savePhoto}: Prof
         <div>Full name: {profile.fullName}</div>
         <div>About me: {profile.aboutMe}</div>
         <div>Loofing for a job: {profile.lookingForAJob}</div>
-        <div>What kind of job am I liiking? {profile.lookingForAJobDescription}</div>
-        <div>My GitHub: {profile.contacts.github}</div>
+        <div>What kind of job I prefer? {profile.lookingForAJobDescription}</div>
+        
       </div>
     </div >
   );
 };
+
+type ContactType = {
+  contactTitle: string
+  contactValue: any
+}
+
+export const Contact = ({contactTitle, contactValue}:ContactType) => {
+  return <div><b>{contactTitle}</b>: {contactValue}</div>
+}

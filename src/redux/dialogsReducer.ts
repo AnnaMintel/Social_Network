@@ -1,19 +1,24 @@
 import { DialogItemType } from "../components/Dialogs/DialogItem/DialogItem";
 import { MessageType } from "../components/Dialogs/Message/Message";
+import { DialogsPageType } from "./types/types";
 
 export const SEND_MESSAGE = 'SEND_MESSAGE';
 
+// types
 export type SendMessageActionType = {
     type: 'SEND_MESSAGE'
     newMessageBody: string
 }
 
-type ActionType = SendMessageActionType 
+type ActionType = SendMessageActionType
 
-export type DialogsPageType = {
-    dialogsData: Array<DialogItemType>
-    messagesData: Array<MessageType>
+export type InitialStateType = typeof initialState;
+
+type SendMessageCreatorType = {
+    type: typeof SEND_MESSAGE
+    newMessageBody: string
 }
+
 
 const initialState = {
     dialogsData: [
@@ -24,7 +29,7 @@ const initialState = {
         { id: 5, name: 'Eva' },
         { id: 6, name: 'Rodrik' },
         { id: 7, name: 'Helen' }
-    ],
+    ] as Array<DialogItemType>,
     messagesData: [
         { id: 1, message: 'Hi!!!' },
         { id: 2, message: 'How are you doing?' },
@@ -32,7 +37,7 @@ const initialState = {
         { id: 4, message: 'Hello, my dear' },
         { id: 5, message: 'What are you doing today?' },
         { id: 6, message: 'Happy weekends!' }
-    ]
+    ] as Array<MessageType>
 }
 
 export const dialogsReducer = (state: DialogsPageType = initialState, action: ActionType) => {
@@ -55,4 +60,5 @@ export const dialogsReducer = (state: DialogsPageType = initialState, action: Ac
     }
 }
 
-export const sendMessageActionCreator = (newMessageBody: string) => ({ type: SEND_MESSAGE, newMessageBody })
+export const sendMessageActionCreator = (newMessageBody: string):SendMessageCreatorType =>
+    ({ type: SEND_MESSAGE, newMessageBody })

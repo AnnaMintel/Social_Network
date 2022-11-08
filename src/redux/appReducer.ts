@@ -1,14 +1,19 @@
 import { getAuthUserData } from './authReducer';
 
-type InitialStateType = {
+// types
+export type InitialStateType = {
     initialized: boolean
 }
+type SettingsInitializesSuccessType = {
+    type: typeof INITIALIZED_SUCCESS
+}
 
-export const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
 
 const initialState: InitialStateType = {
     initialized: false
 };
+
+export const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
 
 export const appReducer = (state: InitialStateType = initialState, action: any): InitialStateType => {
     switch (action.type) {
@@ -23,7 +28,7 @@ export const appReducer = (state: InitialStateType = initialState, action: any):
     }
 }
 
-const setInitializesSuccess = () => ({
+const setInitializesSuccess = ():SettingsInitializesSuccessType => ({
     type: INITIALIZED_SUCCESS
 })
 
@@ -35,7 +40,6 @@ export const initializeApp = () => (dispatch: any) => {
         .then(() => {
             dispatch(setInitializesSuccess());
         })
-
 }
 
 

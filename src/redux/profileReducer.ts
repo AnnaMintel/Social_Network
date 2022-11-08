@@ -1,8 +1,9 @@
-import { Console, profile } from "console";
-import { idText } from "typescript";
 import { profileAPI } from "../api/api";
 import { PostType } from "../components/Profile/MyPosts/Post/Post";
+import { PhotoType, ProfilePageType } from './types/types';
 
+
+// types
 export type AddPostActionActionType = {
     type: 'ADD-POST'
 }
@@ -31,20 +32,6 @@ type ActionType = AddPostActionActionType | UpdateNewPostTextActionType
     | SetUserProfile | SetUserStatusType | DeletePostActionCreatorType
     | SavePhotoActionCreatorType
 
-export const ADD_POST = 'ADD-POST';
-export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-export const SET_USER_PROFILE = 'SET_USER_PROFILE';
-export const SET_USER_STATUS = 'SET_USER_STATUS';
-export const DELETE_AC_POST = 'DELETE_AC_POST';
-export const SAVE_PHOTO = 'SAVE_PHOTO';
-
-export type ProfilePageType = {
-    posts: Array<PostType>
-    newPostText: string
-    profile: any,
-    status: string
-}
-
 export type ProfileDataType = {
     aboutMe: string
     contacts: ContactsType
@@ -52,8 +39,9 @@ export type ProfileDataType = {
     lookingForAJobDescription: string
     fullName: string
     userId: number
-    photos: PhotosType
+    photos: PhotoType
 };
+
 type ContactsType = {
     facebook: null,
     website: null,
@@ -64,10 +52,13 @@ type ContactsType = {
     github: null,
     mainLink: null
 }
-type PhotosType = {
-    small: string
-    large: string
-}
+
+export const ADD_POST = 'ADD-POST';
+export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+export const SET_USER_PROFILE = 'SET_USER_PROFILE';
+export const SET_USER_STATUS = 'SET_USER_STATUS';
+export const DELETE_AC_POST = 'DELETE_AC_POST';
+export const SAVE_PHOTO = 'SAVE_PHOTO';
 
 const initialState = {
     posts: [
@@ -118,7 +109,7 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
         case DELETE_AC_POST: {
             return {
                 ...state,
-                posts: state.posts.filter(p => p.id != action.postId)
+                posts: state.posts.filter((p:any) => p.id != action.postId)
             };
         }
         case SAVE_PHOTO: {

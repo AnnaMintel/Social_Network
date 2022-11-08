@@ -5,7 +5,7 @@ import { createSelector } from 'reselect';
 export const getusersSelector = (state: RootStateType) => {
     return state.usersPage.users;
 }
-// может быть несколько простых селекторов в сложном
+
 export const getusers= createSelector(getusersSelector, (users: any) => {
         return users.filter((u: any) => true)
     })
