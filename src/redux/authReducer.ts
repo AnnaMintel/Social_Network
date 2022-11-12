@@ -1,5 +1,5 @@
 import { stopSubmit } from "redux-form";
-import { headerAPI } from "../api/api";
+import { headerAPI, ResultCodeEnum } from "../api/api";
 
 
 // types
@@ -58,20 +58,20 @@ const setUserDataAC = (userId: number | null,
 
 //thunk
 export const getAuthUserData = () => async (dispatch: any) => {
-    let response = await headerAPI.getHeader();
-    if (response.resultCode === 0) {
-        let { id, email, login } = response.data;
+    let meData = await headerAPI.getHeader();
+    if (meData.resultCode === ResultCodeEnum.Success) {
+        let { id, email, login } = meData.data;
         dispatch(setUserDataAC(id, email, login, true));
     }
 };
 
 // thunk for login
 export const login = (email: string, password: string, rememberMe: boolean) => async (dispatch: any) => {
-    let response = await headerAPI.login(email, password, rememberMe);
-    if (response.resultCode === 0) {
+    let loginData = await headerAPI.login(email, password, rememberMe);
+    if (loginData.resultCode === ResultCodeEnum.Success) {
         dispatch(getAuthUserData());
     } else {
-        let message = response.messages.length > 0 ? response.messages[0]
+        let message = loginData.messages.length > 0 ? loginData.messages[0]
             : 'Data is incorrect';
         dispatch(stopSubmit('login', { _error: message }));
     }
@@ -79,8 +79,8 @@ export const login = (email: string, password: string, rememberMe: boolean) => a
 
 // thunk for logout
 export const logout = () => async (dispatch: any) => {
-    let response = await headerAPI.logout()
-    if (response.resultCode === 0) {
+    let logoutData = await headerAPI.logout()
+    if (logoutData.resultCode === ResultCodeEnum.Success) {
         dispatch(setUserDataAC(null, null, null, false));
     }
 }

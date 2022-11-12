@@ -6,7 +6,7 @@ export const getusersSelector = (state: RootStateType) => {
     return state.usersPage.users;
 }
 
-export const getusers= createSelector(getusersSelector, (users: any) => {
+export const getusers= createSelector(getusersSelector, (users) => {
         return users.filter((u: any) => true)
     })
 

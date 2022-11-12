@@ -1,5 +1,5 @@
-import React from "react";
-import { UserPageType } from "../../redux/usersReducer";
+
+import { UserPageType } from "../../redux/types/types";
 import { Pagination } from "../common/Pagination/Pagination";
 import { User } from "./User";
 
@@ -14,7 +14,7 @@ type UsersType = {
     followingInProgress: Array<number>
 }
 
-export let Users = ({ currentPage, onPageChanged, totalUsersCount, pageSize, users, ...props }: UsersType) => {
+export let Users: React.FC<UsersType> = ({ currentPage, onPageChanged, totalUsersCount, pageSize, users, ...props }) => {
 
     return <div>
         <Pagination currentPage={currentPage} onPageChanged={onPageChanged}

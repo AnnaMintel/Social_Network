@@ -9,12 +9,15 @@ type PaginationType = {
     portionSize?: number
 }
 
-export let Pagination = ({ totalItemsCount, pageSize, currentPage, onPageChanged, portionSize = 10 }
-    : PaginationType) => {
+export let Pagination: React.FC<PaginationType> = ({ totalItemsCount,
+    pageSize,
+    currentPage,
+    onPageChanged,
+    portionSize = 10 }) => {
 
     let pagesCount = Math.ceil(totalItemsCount / pageSize);
 
-    let pages = [];
+    let pages: Array<number> = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
     }

@@ -33,13 +33,13 @@ export const profileAPI = {
         return response.data;
     },
     updateStatus: async (status: string) => {
-        const response = await instance.put('profile/status', {status});
+        const response = await instance.put('profile/status', { status });
         return response.data;
     },
     savePhoto: async (photoFile: any) => {
         let formData = new FormData();
         formData.append('image', photoFile)
-        const response = await instance.put('profile/photo', formData,  {
+        const response = await instance.put('profile/photo', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -48,17 +48,41 @@ export const profileAPI = {
     }
 }
 
+
+export enum ResultCodeEnum {
+    Success = 0,
+    Error = 1
+    // CaptchaIsRequired = 10
+}
+
+type GetHeaderResponseType = {
+    data: { id: number, email: string, login: string }
+    resultCode: ResultCodeEnum
+    messages: Array<string>
+}
+
+type LoginResponseType = {
+    data: { userId: number }
+    resultCode: ResultCodeEnum
+    messages: Array<string>
+}
+
+type LogoutResponseType = {
+    data: {}
+    resultCode: ResultCodeEnum
+    messages: Array<string>
+}
+
 export const headerAPI = {
     getHeader: async () => {
-        const response = await instance.get(`auth/me`);
-        return response.data;
+       return await instance.get<GetHeaderResponseType>(`auth/me`).then (response => response.data);
     },
-    login: async (email: any, password: any, rememberMe: any = false) => {
-        const response = await instance.post(`auth/login`, { email, password, rememberMe});
-        return response.data;
+    login: async (email: string, password: string, rememberMe: boolean = false) => {
+        return  await instance.post<LoginResponseType>(`auth/login`, { email, password, rememberMe })
+        .then (response => response.data);
     },
     logout: async () => {
-        const response = await instance.delete(`auth/login`);
-        return response.data;
+        return await instance.delete<LogoutResponseType>(`auth/login`).then (response => response.data);
     }
 }
+

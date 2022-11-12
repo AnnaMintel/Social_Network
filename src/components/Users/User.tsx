@@ -2,7 +2,7 @@ import React from "react";
 import s from "./users.module.css";
 import userPhoto from '../../assets/images/user.png';
 import { NavLink } from "react-router-dom";
-import { UserPageType } from "../../redux/usersReducer";
+import { UserPageType } from "../../redux/types/types";
 
 type UserType = {
     user: UserPageType

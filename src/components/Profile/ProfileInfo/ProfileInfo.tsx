@@ -33,12 +33,12 @@ export const ProfileInfo = ({profile, status, updateUserStatus, savePhoto}: Prof
       <div className={s.discriptionBlock}>
         <img src={profile.photos.large || userPhoto} className={s.userAvatar} />
         { userId === profile.userId && <input type={'file'} onChange={onFhotoSelected} />}
-        <ProfileStatusWithHooks status={status} updateUserStatus={updateUserStatus}/>
+        <b>Status:</b><ProfileStatusWithHooks status={status} updateUserStatus={updateUserStatus}/>
 
-        <div>Full name: {profile.fullName}</div>
-        <div>About me: {profile.aboutMe}</div>
-        <div>Loofing for a job: {profile.lookingForAJob}</div>
-        <div>What kind of job I prefer? {profile.lookingForAJobDescription}</div>
+        <div><b>Full name:</b> {profile.fullName}</div>
+        <div><b>FAbout me:</b> {profile.aboutMe}</div>
+        <div><b>FLoofing for a job:</b> {profile.lookingForAJob}</div>
+        <div><b>FWhat kind of job I prefer?</b> {profile.lookingForAJobDescription}</div>
         
       </div>
     </div >
