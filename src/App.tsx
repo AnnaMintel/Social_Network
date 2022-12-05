@@ -17,7 +17,7 @@ import { Preloader } from "./components/common/preloader/Preloader";
 //lazy loading
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
-
+const ChatPage = React.lazy(() => import('./pages/Chat/ChatPage'));
 
 class App extends React.Component {
 
@@ -41,6 +41,7 @@ class App extends React.Component {
           <Routes>
             <Route path="/profile/:userId" element={<ProfileContainer />} />
             <Route path="/dialogs" element={<DialogsContainer />} />
+            <Route path="/chat" element={<ChatPage />} />
             <Route path="/news" element={<News />} />
             <Route path="/music" element={<Music />} />
             <Route path="/settings" element={<Settings />} />

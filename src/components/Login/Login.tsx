@@ -1,5 +1,5 @@
 import React from 'react'
-import { Field, InjectedFormProps, reduxForm } from 'redux-form'
+import { InjectedFormProps, reduxForm } from 'redux-form'
 import { requiredFiels } from '../../utils/validators/validators'
 import { createField, Input } from '../common/FormControls/FormsControls'
 import { connect } from 'react-redux'
@@ -35,12 +35,18 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({ handleSub
 export const LoginReduxForm = reduxForm<FormDataType>({ form: 'login' })(LoginForm)
 
 
-const Login = (props: any) => {
+type MatStatePropsType = {
+  isAuth: boolean
+}
+type MapDispatchPropsType = {
+  login: (email: string, password: string, rememberMe: boolean) => void
+}
+
+const Login: React.FC<MatStatePropsType & MapDispatchPropsType> = (props: any) => {
   const onSubmit = (data: FormDataType) => {
     props.login(data.email, data.password, data.rememberMe);
   }
 
-  // redirect 
   if (props.isAuth) return <Navigate to={'/profile'} />
 
   return (
@@ -50,7 +56,7 @@ const Login = (props: any) => {
     </div>
   )
 }
-const mapStateToProps = (state: RootStateType) => ({
+const mapStateToProps = (state: RootStateType): MatStatePropsType => ({
   isAuth: state.auth.isAuth
 })
 export const LoginContainer = connect(mapStateToProps, { login })(Login)
