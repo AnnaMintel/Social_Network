@@ -1,3 +1,4 @@
+import { chatReducer } from './chatReducer';
 import { appReducer } from './appReducer';
 import { authReducer } from './authReducer';
 import { usersReducer } from './usersReducer';
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
     usersPage: usersReducer,
     auth: authReducer,
     form: formReducer,
-    app: appReducer
+    app: appReducer,
+    chat: chatReducer
 });
 
 //@ts-ignore
