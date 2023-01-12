@@ -92,52 +92,52 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
 }
 
 // types for AC
-export type FollowSuccessActionType = {
-    type: typeof FOLLOW
-    userID: number
-}
-export type UnfollowSuccessActionType = {
-    type: typeof UNFOLLOW
-    userID: number
-}
-export type SetUserProfile = {
-    type: typeof SET_USERS
-    users: Array<UserPageType>
-}
-export type SetCurrentPageType = {
-    type: typeof SET_CURRENT_PAGE
-    currentPage: number
-}
-export type SetUsersTotalCountType = {
-    type: typeof SET_TOTAL_USERS_COUNT
-    count: number
-}
-export type ToggleIsFetchingType = {
-    type: typeof TOGGLE_IS_FETCHING
-    isFetching: boolean
-}
-export type ToggleFollowingProgressType = {
-    type: typeof TOGGLE_IS_FOLLOWING_PROGRESS
-    isFetching: boolean
-    userID: number
-}
-type ActionType = FollowSuccessActionType | UnfollowSuccessActionType
-    | SetUserProfile | SetCurrentPageType | SetUsersTotalCountType
-    | ToggleIsFetchingType | ToggleFollowingProgressType
+// export type FollowSuccessActionType = {
+//     type: typeof FOLLOW
+//     userID: number
+// }
+// export type UnfollowSuccessActionType = {
+//     type: typeof UNFOLLOW
+//     userID: number
+// }
+// export type SetUserProfile = {
+//     type: typeof SET_USERS
+//     users: Array<UserPageType>
+// }
+// export type SetCurrentPageType = {
+//     type: typeof SET_CURRENT_PAGE
+//     currentPage: number
+// }
+// export type SetUsersTotalCountType = {
+//     type: typeof SET_TOTAL_USERS_COUNT
+//     count: number
+// }
+// export type ToggleIsFetchingType = {
+//     type: typeof TOGGLE_IS_FETCHING
+//     isFetching: boolean
+// }
+// export type ToggleFollowingProgressType = {
+//     type: typeof TOGGLE_IS_FOLLOWING_PROGRESS
+//     isFetching: boolean
+//     userID: number
+// }
+// type ActionType = FollowSuccessActionType | UnfollowSuccessActionType
+//     | SetUserProfile | SetCurrentPageType | SetUsersTotalCountType
+//     | ToggleIsFetchingType | ToggleFollowingProgressType
 
-export const followSuccess = (userID: number): FollowSuccessActionType =>
+export const followSuccess = (userID: number) =>
     ({ type: FOLLOW, userID })
-export const unfollowSuccess = (userID: number): UnfollowSuccessActionType =>
+export const unfollowSuccess = (userID: number) =>
     ({ type: UNFOLLOW, userID })
-export const setUsers = (users: Array<UserPageType>): SetUserProfile =>
+export const setUsers = (users: Array<UserPageType>) =>
     ({ type: SET_USERS, users })
-export const setCurrentPage = (currentPage: number): SetCurrentPageType =>
+export const setCurrentPage = (currentPage: number) =>
     ({ type: SET_CURRENT_PAGE, currentPage })
-export const setUsersTotalCount = (totalUsersCount: number): SetUsersTotalCountType =>
+export const setUsersTotalCount = (totalUsersCount: number) =>
     ({ type: SET_TOTAL_USERS_COUNT, count: totalUsersCount })
-export const toggleIsFetching = (isFetching: boolean): ToggleIsFetchingType =>
+export const toggleIsFetching = (isFetching: boolean) =>
     ({ type: TOGGLE_IS_FETCHING, isFetching })
-export const toggleFollowingProgress = (isFetching: boolean, userID: number): ToggleFollowingProgressType =>
+export const toggleFollowingProgress = (isFetching: boolean, userID: number) =>
     ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userID })
 
 // thunk type
